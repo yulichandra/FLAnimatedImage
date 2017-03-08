@@ -120,12 +120,6 @@
     }
 }
 
--(void)setAnimationRepeatCount:(NSInteger)animationRepeatCount{
-    [super setAnimationRepeatCount:animationRepeatCount];
-    self.loopCountdown = self.animationRepeatCount > 0 ? self.animationRepeatCount : NSUIntegerMax;
-}
-
-
 #pragma mark - Life Cycle
 
 - (void)dealloc
@@ -278,6 +272,8 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 - (void)startAnimating
 {
     if (self.animatedImage) {
+        self.currentFrameIndex = 0;
+        self.loopCountdown = self.animationRepeatCount > 0 ? self.animationRepeatCount : NSUIntegerMax;
         // Lazily create the display link.
         if (!self.displayLink) {
             // It is important to note the use of a weak proxy here to avoid a retain cycle. `-displayLinkWithTarget:selector:`

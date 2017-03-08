@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = "FLAnimatedImage"
-  spec.version          = "1.0.12"
+  spec.version          = "1.0.13"
   spec.summary          = "Performant animated GIF engine for iOS"
   spec.description      = <<-DESC
                         - Plays multiple GIFs simultaneously with a playback speed comparable to desktop browsers
@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
                         - Behaves gracefully under memory pressure
                         - Eliminates delays or blocking during the first playback loop
                         - Interprets the frame delays of fast GIFs the same way modern browsers do
-                        
+
                         It's a well-tested [component that powers all GIFs in Flipboard](http://engineering.flipboard.com/2014/05/animated-gif/).
                         DESC
 
