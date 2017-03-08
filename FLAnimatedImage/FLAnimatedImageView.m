@@ -139,7 +139,7 @@
     [super didMoveToSuperview];
     
     [self updateShouldAnimate];
-    if (self.shouldAnimate) {
+    if (self.shouldAnimate && self.autoPlay) {
         [self startAnimating];
     } else {
         [self stopAnimating];
@@ -152,7 +152,7 @@
     [super didMoveToWindow];
     
     [self updateShouldAnimate];
-    if (self.shouldAnimate) {
+    if (self.shouldAnimate && self.autoPlay) {
         [self startAnimating];
     } else {
         [self stopAnimating];
@@ -165,7 +165,7 @@
     [super setAlpha:alpha];
 
     [self updateShouldAnimate];
-    if (self.shouldAnimate) {
+    if (self.shouldAnimate && self.autoPlay) {
         [self startAnimating];
     } else {
         [self stopAnimating];
@@ -177,7 +177,7 @@
     [super setHidden:hidden];
 
     [self updateShouldAnimate];
-    if (self.shouldAnimate) {
+    if (self.shouldAnimate && self.autoPlay) {
         [self startAnimating];
     } else {
         [self stopAnimating];
@@ -348,7 +348,7 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 - (void)updateShouldAnimate
 {
     BOOL isVisible = self.window && self.superview && ![self isHidden] && self.alpha > 0.0;
-    self.shouldAnimate = self.animatedImage && isVisible && self.autoPlay;
+    self.shouldAnimate = self.animatedImage && isVisible;
 }
 
 - (void)displayDidRefresh:(CADisplayLink *)displayLink
