@@ -109,6 +109,7 @@
         self.imageView3 = [[FLAnimatedImageView alloc] init];
         self.imageView3.contentMode = UIViewContentModeScaleAspectFill;
         self.imageView3.clipsToBounds = YES;
+        self.imageView3.animationRepeatCount = 1;
     }
     [self.view addSubview:self.imageView3];
     self.imageView3.frame = CGRectMake(389.0, 577.0, 379.0, 447.0);

@@ -86,6 +86,7 @@
 
 - (void)commonInit
 {
+    self.autoPlay = YES;
     self.runLoopMode = [[self class] defaultRunLoopMode];
 }
 
@@ -112,18 +113,9 @@
         
         self.currentFrame = animatedImage.posterImage;
         self.currentFrameIndex = 0;
-        if (animatedImage.loopCount > 0) {
-            self.loopCountdown = animatedImage.loopCount;
-        } else {
-            self.loopCountdown = NSUIntegerMax;
-        }
-        self.accumulator = 0.0;
         
-        // Start animating after the new animated image has been set.
-        [self updateShouldAnimate];
-        if (self.shouldAnimate) {
-            [self startAnimating];
-        }
+        self.loopCountdown = self.animationRepeatCount > 0 ? self.animationRepeatCount : NSUIntegerMax;
+        self.accumulator = 0.0;
         
         [self.layer setNeedsDisplay];
     }
@@ -165,6 +157,7 @@
     } else {
         [self stopAnimating];
     }
+
 }
 
 - (void)setAlpha:(CGFloat)alpha
@@ -355,9 +348,8 @@ static NSUInteger gcd(NSUInteger a, NSUInteger b)
 - (void)updateShouldAnimate
 {
     BOOL isVisible = self.window && self.superview && ![self isHidden] && self.alpha > 0.0;
-    self.shouldAnimate = self.animatedImage && isVisible;
+    self.shouldAnimate = self.animatedImage && isVisible && self.autoPlay;
 }
-
 
 - (void)displayDidRefresh:(CADisplayLink *)displayLink
 {
