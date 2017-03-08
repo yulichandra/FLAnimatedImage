@@ -114,11 +114,15 @@
         self.currentFrame = animatedImage.posterImage;
         self.currentFrameIndex = 0;
         
-        self.loopCountdown = self.animationRepeatCount > 0 ? self.animationRepeatCount : NSUIntegerMax;
         self.accumulator = 0.0;
         
         [self.layer setNeedsDisplay];
     }
+}
+
+-(void)setAnimationRepeatCount:(NSInteger)animationRepeatCount{
+    [super setAnimationRepeatCount:animationRepeatCount];
+    self.loopCountdown = self.animationRepeatCount > 0 ? self.animationRepeatCount : NSUIntegerMax;
 }
 
 
